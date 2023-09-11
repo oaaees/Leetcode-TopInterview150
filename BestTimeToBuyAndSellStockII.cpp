@@ -6,16 +6,14 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int sum = 0;
-        int latest = prices[0];
 
-        for(int i = 0; i < prices.size(); i++){
-            if(prices[i] > latest){
-                sum += latest - prices[i];
-                latest = prices[i];
+        for(int i = 1; i < prices.size(); i++){
+            if(prices[i] > prices[i - 1]){
+                sum += prices[i] - prices[i - 1];
             }
         }
         
-        return max;
+        return sum;
     }
 };
 

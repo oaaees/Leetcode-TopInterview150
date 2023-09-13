@@ -10,7 +10,6 @@ class Solution {
 public:
     bool canJump(vector<int>& nums) {
         int i = 0;
-
         if (nums.size() <= 1) return true;
 
         while(i < nums.size()) {
@@ -18,19 +17,25 @@ public:
                 return false;
             }
 
-            if(i + nums[i] >= nums.size() - 1){
-                return true;
+            if(nums[i] == 0){
+                i--;
             } else {
-                if(nums[i + nums[i]] == 0){
-                    nums[i]--;
+                int jump = nums[i];
+
+                if(i + jump >= nums.size() - 1){
+                    return true;
                 } else {
-                    i += nums[i];
+                    if(nums[i + jump] == 0){
+                        nums[i]--;
+                    } else {
+                        i += nums[i];
+                    }
                 }
             }
         }
-        
+
         return true;
-    }        
+    }
 };
 
 int main (){

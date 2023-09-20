@@ -1,6 +1,6 @@
-## 150 Leetcode problems
+## Leetcode problems
 
-This is a recopilation of leetcode studyplan called Top Interview 150 from https://leetcode.com/studyplan/top-interview-150/
+This is a recopilation of leetcode problems, each file solves the exercise with the same name
 
 To run these solutions you need to compile and execute running:
 

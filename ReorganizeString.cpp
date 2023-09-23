@@ -1,29 +1,38 @@
 #include <string>
 #include <vector>
+#include <algorithm> 
 #include <iostream>
 using namespace std;
 
 class Solution {
 public:
     string reorganizeString(string s) {
-        vector<int> letters(26, 0);
-        vector<int> reference = {};
+        vector<vector<int>> letters(26, {0,0});
         string res = "";
 
         for(int i = 0; i < s.length(); i++){
-            if(letters[s[i] - 97] == 0) reference.push_back(s[i] - 97);
-            letters[s[i] - 97]++;
-        }
-
-        while(reference.size() > 0){
-            for(int i = 0; i < reference.size(); i++){
-                res += reference[i] + 97;
-                letters[reference[i]]--;
-
-                if(letters[reference[i]] == 0) reference.erase(reference.begin()+i);
+            if(letters[s[i] - 97][1] == 0){
+                letters[s[i] - 97][0] == s[i];
             }
 
-            cout << res << '\n';
+            letters[s[i] - 97][1]++;
+        }
+
+        sort(letters.begin(), letters.end(), [](vector<int> a, vector<int> b){ return a[1] > b[1]; });
+
+        for(int i = 0; i < letters.size(); i++){
+            if(letters[i][1] == 0) {
+                letters.erase(letters.begin()+i, letters.end());
+                break;
+            }
+        }
+
+        while(letters.size() > 0){
+            if(letters[0][1] == 0) letters.erase(letters.begin());
+            if(letters[1][1] == 0) letters.erase(letters.begin()+1);
+
+            res += letters[0][0]--;
+            res += letters[1][0]--;
         }
 
         return res;

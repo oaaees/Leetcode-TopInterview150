@@ -5,16 +5,20 @@ using namespace std;
 class Solution {
 public:
     string reverseOnlyLetters(string s) {
-        string temp = "";
+        int b = 0, f = s.size() - 1;
 
-        for(int i = 0; i < s.size(); i++){
-            if(s[i] >= 'A' && s[i] <= 'Z' || s[i] >= 'a' && s[i] <= 'z') temp += s[i]; 
-        }
+        while(f > b){
+            if(isalpha(s[b]) && isalpha(s[f])){
+                char temp = s[b];
+                s[b] = s[f];
+                s[f] = temp;
+                b++;
+                f--;
+                continue;
+            }
 
-        int count = 0;
-
-        for(int i = s.size() - 1; i >= 0; i--){
-            if(s[i] >= 'A' && s[i] <= 'Z' || s[i] >= 'a' && s[i] <= 'z') s[i] = temp[count++]; 
+            if(!isalpha(s[b])) b++;
+            if(!isalpha(s[f])) f--;
         }
 
         return s;

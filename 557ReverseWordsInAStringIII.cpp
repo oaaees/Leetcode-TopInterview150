@@ -9,8 +9,8 @@ public:
         vector<string> words = {};
         string temp = "";
 
-        for(int i = 0; i < s.size(); i++){
-            if( s[i] == ' ' || i = s.size() - 1){
+        for(int i = 0; i < s.size() + 1; i++){
+            if( i == s.size() || s[i] == ' ' ){
                 words.push_back(temp);
                 temp = "";
             } else {
@@ -18,21 +18,23 @@ public:
             }
         }
 
-        for(string word : words){
-            int i = 0, j = word.size() - 1;
+        for(int k = 0; k < words.size(); k++){
+            int i = 0, j = words[k].size() - 1;
             while(i < j){
-                char temp = word[i];
-                word[i] = word[j];
-                word[j] = temp;
+                char temp = words[k][i];
+                words[k][i] = words[k][j];
+                words[k][j] = temp;
                 i++;
                 j--;
             }
-            temp += word + " ";
+            temp += words[k];
+            if(k != words.size() - 1) temp += " ";
         }
 
         return temp;
     }
 };
+
 
 int main (){
     Solution sol;

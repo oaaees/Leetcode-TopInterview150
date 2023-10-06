@@ -4,10 +4,10 @@ using namespace std;
 
 class Solution {
 public:
-    int integerBreak(int n) {
+    unsigned long long integerBreak(int n) {
         if (n <= 3){ return n - 1; }
 
-        int prod = 1;
+        unsigned long long prod = 1;
 
         while(n > 4){
             prod *= 3;
@@ -23,5 +23,5 @@ public:
 int main (){
     Solution sol;
 
-    cout << sol.integerBreak(1234);
+    cout << sol.integerBreak(54);
 }

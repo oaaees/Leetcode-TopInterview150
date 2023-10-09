@@ -26,10 +26,10 @@ public:
 
         int begin = index, end = index;
 
-        for(int i = end; i < nums.size(); i++){
+        for(int i = end; i < nums.size() - 1; i++){
             if(nums[end + 1] == target) end++;
         }
-        for(int i = begin; i >= 0; i--){
+        for(int i = begin; i > 0; i--){
             if(nums[begin - 1] == target) begin--;
         }
 

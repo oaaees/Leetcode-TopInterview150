@@ -14,7 +14,7 @@ public:
             for(int j = i; j < satisfaction.size(); j++){
                 res[i] += satisfaction[j] * (j - i + 1);
             }
-             
+            if(res[i] < 0) break;    
         }
 
         int max = res[0];

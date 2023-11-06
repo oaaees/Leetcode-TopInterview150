@@ -5,22 +5,31 @@ using namespace std;
 
 class SeatManager {
 private:
-    priority_queue <int, vector<int>, greater<int>> pq;
+    vector<int> seats;
 public:
     SeatManager(int n) {
-        for(int i = 1; i <= n; i++){
-            pq.push(i);
+        seats = vector<int>(n, 0);
+        for(int i = seats.size() - 1; i >= 0; i--){
+            seats[i] = seats.size() - i;
         }
     }
     
     int reserve() {
-        int seat = pq.top();
-        pq.pop();
+        int seat = seats[seats.size() - 1];
+        seats.pop_back();
         return seat;
     }
     
     void unreserve(int seatNumber) {
-        pq.push(seatNumber);
+        for(int i = seats.size() - 1; i >= 0; i--){
+            if(seats[i] > seatNumber){
+                seats.insert(seats.end() - (seats.size() - 1 - i), seatNumber);
+                return;
+            }
+        }
+
+        seats.insert(seats.begin(), seatNumber);
+        return;
     }
 };
 

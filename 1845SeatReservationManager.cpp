@@ -1,54 +1,38 @@
 #include <vector>
+#include <queue>
 #include <iostream>
 using namespace std;
 
 class SeatManager {
-private: 
-    int min;
-    vector<bool> seats;
+private:
+    priority_queue <int, vector<int>, greater<int>> pq;
 public:
     SeatManager(int n) {
-        min = 0;
-        seats = vector<bool>(n, true);
+        for(int i = 1; i <= n; i++){
+            pq.push(i);
+        }
     }
     
     int reserve() {
-        seats[min] = false;
-        int r = min;
-
-        if(seats[min + 1]){
-            min++;
-            return min - 1;
-        }
-
-        for(int i = min; i < seats.size(); i++){
-            if(seats[i]){
-                min = i;
-            }
-        }
-
-        return r;
+        int seat = pq.top();
+        pq.pop();
+        return seat;
     }
     
     void unreserve(int seatNumber) {
-        seats[seatNumber - 1] = true;
-    }
-
-    void print(){
-        for(bool b : seats){ cout << b; }
-        cout << '\n';
+        pq.push(seatNumber);
     }
 };
 
 int main (){
     SeatManager sm(5);
-    sm.reserve();
-    sm.print();
-    sm.reserve();
-    sm.print();
-    sm.reserve();
-    sm.print();
 
+    sm.reserve();
+    sm.reserve();
+    sm.unreserve(2);
+    sm.reserve();
+    sm.reserve();
+    sm.reserve();
 
     return 0;
 }

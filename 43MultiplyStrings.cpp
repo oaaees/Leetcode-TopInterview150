@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 public:
     string multiply(string n1, string n2) {
-        if(n1 == '0' || n2 == '0') return "0";
+        if(n1 == "0" || n2 == "0") return "0";
         vector<vector<int>> to_sum(n2.size(), vector<int>(n2.size() + n1.size(), 0));
 
         for(int i = n2.size() - 1; i >= 0; i--){

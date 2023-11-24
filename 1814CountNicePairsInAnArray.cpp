@@ -7,6 +7,7 @@ using namespace std;
 class Solution {
 public:
     int countNicePairs(vector<int>& nums) {
+        int MOD = 1000000007;
         long long count = 0;
         unordered_map<int, int> hash;
 
@@ -21,7 +22,7 @@ public:
             }
         }
 
-        return count % 1000000007;
+        return count % MOD;
     }
 
     int rev(int x){
